@@ -1,0 +1,37 @@
+[
+    {
+        "id": "c1",
+        "name": "Marcus Vance",
+        "gender": "Male",
+        "image": "images/staff1.webp",
+        "description": "Enthusiastic food enthusiast who loves hunting down local diner breakfast specials and the ultimate smash burgers. Always ready for a friendly chat about movies and classic cars."
+    },
+    {
+        "id": "c2",
+        "name": "Elena Rostova",
+        "gender": "Female",
+        "image": "images/staff2.webp",
+        "description": "A seasoned neighborhood foodie with a deep love for farm-to-table casual dining and authentic food truck finds. Enjoys lively conversations regarding architecture, books, and gardening."
+    },
+    {
+        "id": "c3",
+        "name": "Devon Miller",
+        "gender": "Male",
+        "image": "images/staff3.webp",
+        "description": "Late-night fast-food connoisseur who knows exactly where to find the crispest fries in the city. Always down for spontaneous coffee runs, casual table talk, and sharing new indie music tracks."
+    },
+    {
+        "id": "c4",
+        "name": "Amina Yusuf",
+        "gender": "Female",
+        "image": "images/staff4.webp",
+        "description": "Passionate about exploring diverse global flavors, street food markets, and local family-run cafes. Brings warmth, an inviting smile, and great listening skills to any dinner table."
+    },
+    {
+        "id": "c5",
+        "name": "Arthur Pendelton",
+        "gender": "Male",
+        "image": "images/staff5.webp",
+        "description": "A warm and well-spoken companion who enjoys peaceful sit-down dinners, traditional family bistros, and classic desserts. Excellent at keeping lighthearted, pleasant conversations going over a great meal."
+    }
+]

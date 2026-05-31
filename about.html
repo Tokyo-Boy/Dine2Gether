@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Dine2Gether</title>
+    
+    <style>
+        /* Reset & Base Accessibility Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Large base font size (18px) for low-vision readability */
+        html {
+            font-size: 112.5%; 
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif; /* Highly legible sans-serif font */
+            line-height: 1.8; /* Increased line height for clear reading */
+            color: #1a1a1a; /* High contrast dark text (Near Black) */
+            background-color: #ffffff;
+        }
+
+        /* Visible Focus States for Keyboard Navigation */
+        a:focus, button:focus {
+            outline: 3px solid #e67e22;
+            outline-offset: 2px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #ffffff;
+            border-bottom: 3px solid #d35400; /* Energetic dark orange border */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo a {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #2c3e50;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo a span {
+            color: #d35400; /* High contrast brand orange */
+        }
+
+        /* Hamburger Menu Button (Hidden on Desktop) */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 2px solid #2c3e50;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .menu-toggle .hamburger-icon {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        /* Navigation Links */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 5px 0;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav ul li a:hover, 
+        nav ul li a.active {
+            color: #d35400;
+            border-bottom: 3px solid #d35400;
+        }
+
+        /* Main Content Styling */
+        main {
+            padding: 60px 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Story Section Box */
+        .about-story {
+            max-width: 850px;
+            margin: 0 auto 60px auto;
+            background-color: #fdfefe;
+            border: 2px solid #bdc3c7;
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .about-story h2 {
+            color: #d35400;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-story p {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        /* Leadership Section Grid */
+        .leadership-section {
+            background-color: #fffaf5;
+            border-top: 2px solid #e1e1e1;
+            border-bottom: 2px solid #e1e1e1;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .leadership-section h2 {
+            font-size: 2.1rem;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        /* CEO Profile Layout */
+        .ceo-card {
+            background: #ffffff;
+            border: 3px solid #bdc3c7;
+            border-radius: 12px;
+            padding: 40px 30px;
+            max-width: 450px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Perfectly Circular PFP Container */
+        .ceo-avatar-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 25px auto;
+            border-radius: 50%;
+            border: 5px solid #d35400; /* Thick brand border for easy visibility */
+            overflow: hidden;
+            background-color: #eaeaea; /* Fallback color while image loads */
+        }
+
+        .ceo-avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ceo-card h3 {
+            font-size: 1.6rem;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .ceo-title {
+            display: inline-block;
+            background-color: #2c3e50;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1rem;
+            padding: 4px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .ceo-bio {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            text-align: left; /* Left aligned block text for easier visual scanning */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 0;
+            border-top: 4px solid #d35400;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #ffffff;
+                box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+                border-bottom: 3px solid #d35400;
+            }
+
+            nav.open {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 12px 0;
+                font-size: 1.3rem;
+            }
+
+            .about-story {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Dine<span>2Gether</span></a>
+            </div>
+            
+            <button class="menu-toggle" id="menu-button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+                Menu <span class="hamburger-icon">☰</span>
+            </button>
+
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="companion.html">Find a Companion</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>About Dine2Gether</h1>
+            
+            <article class="about-story">
+                <h2>Our Mission</h2>
+                <p>Founded with a simple yet powerful belief: <strong>nobody should have to eat alone unless they want to</strong>. Food brings people together, but modern, busy schedules often turn breakfast, lunch, and dinner into isolated routines.</p>
+                <p>Dine2Gether was created to build bridges. Whether you are stopping by a neighborhood family diner for comfort food, checking out a brand new bistro, or making a quick late-night run for burgers and fries, our platform safely connects you with real local people ready to join you at the table.</p>
+                <p>We take pride in building an inclusive community. Our design principles guarantee an accessible layout with clear text and straightforward operations, making it easy for users of all abilities to find companionship over a great meal.</p>
+            </article>
+        </div>
+
+        <section class="leadership-section">
+            <div class="container">
+                <h2>Our Leadership</h2>
+                
+                <article class="ceo-card">
+                    <div class="ceo-avatar-container">
+                        <img src="images/ceo.webp" alt="Headshot portrait of our CEO, Julian Vance">
+                    </div>
+                    <h3>Julian Vance</h3>
+                    <span class="ceo-title">Founder &amp; CEO</span>
+                    <p class="ceo-bio">Julian started Dine2Gether after moving to a new city and realizing how difficult it was to find people to check out local food spots with. Dedicated to accessible design and community building, he believes that the best conversations happen when sharing a meal.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dine2Gether Service. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (menuButton && navMenu) {
+                menuButton.addEventListener('click', () => {
+                    const isOpen = navMenu.classList.toggle('open');
+                    menuButton.setAttribute('aria-expanded', isOpen);
+                    
+                    const icon = menuButton.querySelector('.hamburger-icon');
+                    if (isOpen) {
+                        icon.textContent = '✕';
+                    } else {
+                        icon.textContent = '☰';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

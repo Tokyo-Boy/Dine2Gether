@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Dining Companion - Dine2Gether</title>
+    
+    <style>
+        /* Reset & Base Accessibility Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Large base font size (18px) for low-vision readability */
+        html {
+            font-size: 112.5%; 
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.8;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        /* Focus States for Keyboard Navigation */
+        a:focus, button:focus {
+            outline: 3px solid #e67e22;
+            outline-offset: 2px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: #ffffff;
+            border-bottom: 3px solid #d35400;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo a {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #2c3e50;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo a span {
+            color: #d35400;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 2px solid #2c3e50;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .menu-toggle .hamburger-icon {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 5px 0;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav ul li a:hover, 
+        nav ul li a.active {
+            color: #d35400;
+            border-bottom: 3px solid #d35400;
+        }
+
+        /* Core Section Titles */
+        main {
+            padding: 60px 0;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .page-intro {
+            font-size: 1.25rem;
+            color: #333333;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            text-align: center;
+        }
+
+        /* Companion Dynamic Grid Layout */
+        .companion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        /* Profile Cards */
+        .profile-card {
+            background-color: #fdfefe;
+            border: 3px solid #bdc3c7; /* Extra thickness for explicit element bounds */
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Precise Circle Image Constraints */
+        .avatar-container {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            border: 4px solid #d35400; /* Distinct brand accent ring */
+            overflow: hidden;
+            background-color: #eaeaea; /* Fallback placeholder fill color */
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-card h2 {
+            font-size: 1.6rem;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        /* Explicit contrast tag badge for Gender markers */
+        .gender-tag {
+            display: inline-block;
+            background-color: #2c3e50;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.95rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .profile-description {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+            text-align: left; /* Left-aligned blocks are significantly more legible for low vision */
+        }
+
+        .btn-action {
+            display: inline-block;
+            width: 100%;
+            background-color: #d35400;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.15rem;
+            padding: 12px 0;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-action:hover {
+            background-color: #a04000;
+            text-decoration: underline;
+        }
+
+        /* Error/Loading state text formatting */
+        .status-message {
+            font-size: 1.3rem;
+            color: #c0392b;
+            text-align: center;
+            font-weight: bold;
+            padding: 4px;
+        }
+
+        /* Footer configuration */
+        footer {
+            background-color: #2c3e50;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 80px;
+            border-top: 4px solid #d35400;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+        }
+
+        /* Accessible Responsive Adjustments */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #ffffff;
+                box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+                border-bottom: 3px solid #d35400;
+            }
+
+            nav.open {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 12px 0;
+                font-size: 1.3rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Dine<span>2Gether</span></a>
+            </div>
+            
+            <button class="menu-toggle" id="menu-button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+                Menu <span class="hamburger-icon">☰</span>
+            </button>
+
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="companion.html" class="active">Find a Companion</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Meet Our Dining Companions</h1>
+            <p class="page-intro">Select a trusted companion to share a meal, exchange stories, and try out new culinary locations. All profiles are pre-verified for your peace of mind.</p>
+            
+            <div id="companions-wrapper" class="companion-grid">
+                <p class="status-message" style="color: #2c3e50;">Loading available companions...</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dine2Gether Service. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Part 1: Mobile Hamburger Toggle Logic
+            const menuButton = document.getElementById('menu-button');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (menuButton && navMenu) {
+                menuButton.addEventListener('click', () => {
+                    const isOpen = navMenu.classList.toggle('open');
+                    menuButton.setAttribute('aria-expanded', isOpen);
+                    const icon = menuButton.querySelector('.hamburger-icon');
+                    icon.textContent = isOpen ? '✕' : '☰';
+                });
+            }
+
+            // Part 2: Fetch and Render Companions dynamically from staff.json
+            const wrapper = document.getElementById('companions-wrapper');
+
+            fetch('staff.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response failure encountered.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Empty loading state
+                    wrapper.innerHTML = '';
+                    
+                    if(data.length === 0) {
+                        wrapper.innerHTML = '<p class="status-message">No companions are currently available. Check back soon!</p>';
+                        return;
+                    }
+
+                    // Process each companion profile entry cleanly
+                    data.forEach(companion => {
+                        const card = document.createElement('article');
+                        card.className = 'profile-card';
+                        
+                        card.innerHTML = `
+                            <div class="avatar-container">
+                                <img src="${companion.image}" alt="Profile headshot of ${companion.name}">
+                            </div>
+                            <h2>${companion.name}</h2>
+                            <span class="gender-tag">${companion.gender}</span>
+                            <p class="profile-description">${companion.description}</p>
+                            <button class="btn-action" aria-label="Book a dining session with ${companion.name}">Invite to Dine</button>
+                        `;
+                        
+                        wrapper.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error rendering companion data profiles:', error);
+                    wrapper.innerHTML = '<p class="status-message">Unable to display profiles at this time. Please check your data configurations.</p>';
+                });
+        });
+    </script>
+</body>
+</html>

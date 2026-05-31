@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Dine2Gether</title>
+    
+    <style>
+        /* Reset & Base Accessibility Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Large base font size (18px) for low-vision readability */
+        html {
+            font-size: 112.5%; 
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.8;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        /* Visible Focus States for Keyboard Navigation */
+        a:focus, button:focus {
+            outline: 3px solid #e67e22;
+            outline-offset: 2px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #ffffff;
+            border-bottom: 3px solid #d35400;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo a {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #2c3e50;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo a span {
+            color: #d35400;
+        }
+
+        /* Hamburger Menu Button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 2px solid #2c3e50;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .menu-toggle .hamburger-icon {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        /* Navigation Links */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 5px 0;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav ul li a:hover, 
+        nav ul li a.active {
+            color: #d35400;
+            border-bottom: 3px solid #d35400;
+        }
+
+        /* Main Content Styling */
+        main {
+            padding: 60px 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .page-intro {
+            font-size: 1.25rem;
+            color: #333333;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            text-align: center;
+        }
+
+        /* Services Layout Framework */
+        .services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Individual Service Row Card */
+        .service-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            background-color: #fdfefe;
+            border: 3px solid #bdc3c7; /* Strong border constraints */
+            border-radius: 12px;
+            padding: 40px;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .service-row {
+                grid-template-columns: 2fr 1fr;
+                align-items: center;
+            }
+        }
+
+        .service-text h2 {
+            font-size: 1.7rem;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .service-text p {
+            font-size: 1.15rem;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        /* Premium Tier Badge Indicator */
+        .badge-premium {
+            display: inline-block;
+            background-color: #2c3e50;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge-premium.legal {
+            background-color: #b33939; /* Distinct contrast color for the legal track */
+        }
+
+        .service-action {
+            text-align: center;
+        }
+
+        .btn-service {
+            display: inline-block;
+            width: 100%;
+            max-width: 250px;
+            background-color: #d35400;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 14px 0;
+            text-decoration: none;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-service:hover {
+            background-color: #a04000;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 0;
+            border-top: 4px solid #d35400;
+            margin-top: 80px;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Mechanics */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #ffffff;
+                box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+                border-bottom: 3px solid #d35400;
+            }
+
+            nav.open {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 12px 0;
+                font-size: 1.3rem;
+            }
+
+            .btn-service {
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Dine<span>2Gether</span></a>
+            </div>
+            
+            <button class="menu-toggle" id="menu-button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+                Menu <span class="hamburger-icon">☰</span>
+            </button>
+
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="companion.html">Find a Companion</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Our Dining Services</h1>
+            <p class="page-intro">Explore our tailored companionship options. Whether you need a simple companion for a quick bite or specialized decision-making support, we have a tier for you.</p>
+            
+            <div class="services-list">
+                
+                <article class="service-row">
+                    <div class="service-text">
+                        <h2>Spontaneous Fast-Food Runs</h2>
+                        <p>Perfect for quick drive-thrus, late-night burger cravings, or casual food truck outings. Get matched instantly with a local companion who shares your appetite and location for an effortless meal together.</p>
+                    </div>
+                    <div class="service-action">
+                        <a href="companion.html" class="btn-service">Book Buddy</a>
+                    </div>
+                </article>
+
+                <article class="service-row">
+                    <div class="service-text">
+                        <h2>Casual &amp; Fine Sit-Down Dinners</h2>
+                        <p>Enjoy relaxed conversations at a local family diner or check out a premium city bistro. Our social dining companions ensure you never have to navigate a sit-down menu or wait for a table alone again.</p>
+                    </div>
+                    <div class="service-action">
+                        <a href="companion.html" class="btn-service">Find Partner</a>
+                    </div>
+                </article>
+
+                <article class="service-row">
+                    <div class="service-text">
+                        <span class="badge-premium legal">Premium Service</span>
+                        <h2>Food Court Lawyer</h2>
+                        <p>Overwhelmed by the competing choices of a busy mall food court? Retain a certified legal professional to accompany you directly to the dining area. Your dedicated Food Court Lawyer will help you evaluate vendor menus, settle meal indecision, cross-examine side options, and provide legally structured arguments to arrive at your ultimate lunch selection.</p>
+                        <p><em>Disclaimer: Services provided under this tier are strictly limited to gastronomic choice resolution and meal decision-making optimization.</em></p>
+                    </div>
+                    <div class="service-action">
+                        <a href="contact.html" class="btn-service">Retain Counsel</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dine2Gether Service. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (menuButton && navMenu) {
+                menuButton.addEventListener('click', () => {
+                    const isOpen = navMenu.classList.toggle('open');
+                    menuButton.setAttribute('aria-expanded', isOpen);
+                    
+                    const icon = menuButton.querySelector('.hamburger-icon');
+                    if (isOpen) {
+                        icon.textContent = '✕';
+                    } else {
+                        icon.textContent = '☰';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
